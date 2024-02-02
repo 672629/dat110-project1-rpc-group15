@@ -39,8 +39,21 @@ public class MessageConnection {
 		// TODO - START
 		// encapsulate the data contained in the Message and write to the output stream
 		
-		if (true)
-			throw new UnsupportedOperationException(TODO.method());
+		//Burde potensielt lagt messageUtil i kontruktøren? men det er her TODO er.
+		
+		data = MessageUtils.encapsulate(message);
+		
+		//skriv størrelsen på det vi skal sende
+		outStream.writeInt(data.length);
+		
+		//skriv dataen på det vi skal sende
+		outStream.write(data);
+		
+		//flush for å la inputStream lese dataen
+		outStream.flush();
+		
+		/*if (true)
+			throw new UnsupportedOperationException(TODO.method());*/
 			
 		// TODO - END
 
@@ -54,8 +67,19 @@ public class MessageConnection {
 		// TODO - START
 		// read a segment from the input stream and decapsulate data into a Message
 		
-		if (true)
-			throw new UnsupportedOperationException(TODO.method());
+		//skal holde max 128 så la til litt extra
+		data = new byte[140];
+		
+		int bytesCopied = inStream.read(data);
+		
+		if(bytesCopied > 0) {
+			MessageUtils.decapsulate(data);
+		}else {
+			System.out.println("Ingen data lest");
+		}
+		
+		/*if (true)
+			throw new UnsupportedOperationException(TODO.method());*/
 		
 		// TODO - END
 		

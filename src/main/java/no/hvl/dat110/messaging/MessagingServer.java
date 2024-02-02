@@ -2,6 +2,7 @@ package no.hvl.dat110.messaging;
 
 import java.io.IOException;
 import java.net.ServerSocket;
+import java.net.Socket;
 
 import no.hvl.dat110.TODO;
 
@@ -30,9 +31,14 @@ public class MessagingServer {
 
 		// TODO - START
 		// accept TCP connection on welcome socket and create messaging connection to be returned
-
-		if (true)
-			throw new UnsupportedOperationException(TODO.method());
+		
+		//lag en ny klientsocket av klienten når den kaller på serversocketen
+		Socket clientSocket = welcomeSocket.accept();
+		
+		connection = new MessageConnection(clientSocket);
+		
+		/*if (true)
+			throw new UnsupportedOperationException(TODO.method());*/
 		
 		// TODO - END
 		

@@ -1,6 +1,7 @@
 package no.hvl.dat110.rpc;
 
 import java.nio.ByteBuffer;
+import java.nio.charset.Charset;
 import java.util.Arrays;
 import no.hvl.dat110.TODO;
 
@@ -14,8 +15,15 @@ public class RPCUtils {
 		
 		// Encapsulate the rpcid and payload in a byte array according to the RPC message syntax / format
 		
-		if (true)
-			throw new UnsupportedOperationException(TODO.method());
+		rpcmsg = new byte[payload.length+1];
+		rpcmsg[0] = rpcid;
+		
+		for(int i = 0; i<payload.length; i++) {
+			rpcmsg[i+1] = payload[i];
+		}
+		
+		/*if (true)
+			throw new UnsupportedOperationException(TODO.method());*/
 		
 		// TODO - END
 		
@@ -30,8 +38,14 @@ public class RPCUtils {
 		
 		// Decapsulate the rpcid and payload in a byte array according to the RPC message syntax
 		
-		if (true)
-			throw new UnsupportedOperationException(TODO.method());
+		payload = new byte[rpcmsg.length-1];
+		
+		for(int i = 0; i<rpcmsg.length-1; i++) {
+			payload[i] = rpcmsg[i+1];
+		}
+		
+		/*if (true)
+			throw new UnsupportedOperationException(TODO.method());*/
 		
 		// TODO - END
 		
@@ -46,8 +60,21 @@ public class RPCUtils {
 		
 		// TODO - START 
 		
-		if (true)
-			throw new UnsupportedOperationException(TODO.method());
+		// Bytebuffer skal være  sikrere 
+		int size = str.length();
+		encoded = new byte[size];
+		
+		for(int i = 0; i<size; i++) {
+			encoded[i] = (byte) str.charAt(i);
+		}
+		
+		/*
+		ByteBuffer bytebuffer = Charset.forName("UTF-8").encode(str);
+		encoded = new byte[bytebuffer.remaining()];
+		bytebuffer.get(encoded);*/
+		
+		/*if (true)
+			throw new UnsupportedOperationException(TODO.method());*/
 		
 		// TODO - END
 		
@@ -61,8 +88,12 @@ public class RPCUtils {
 		
 		// TODO - START 
 		
-		if (true)
-			throw new UnsupportedOperationException(TODO.method());
+		Charset charset = Charset.forName("UTF-8");
+		
+		decoded = new String(data, charset);
+		
+		/*if (true)
+			throw new UnsupportedOperationException(TODO.method());*/
 		
 		// TODO - END
 		
@@ -75,8 +106,10 @@ public class RPCUtils {
 		
 		// TODO - START 
 		
-		if (true)
-			throw new UnsupportedOperationException(TODO.method());
+		encoded = new byte[0];
+		
+		/*if (true)
+			throw new UnsupportedOperationException(TODO.method());*/
 				
 		// TODO - END
 		
@@ -88,8 +121,8 @@ public class RPCUtils {
 		
 		// TODO
 		
-		if (true)
-			throw new UnsupportedOperationException(TODO.method());
+		/*if (true)
+			throw new UnsupportedOperationException(TODO.method());*/
 		
 	}
 
@@ -122,8 +155,19 @@ public class RPCUtils {
 		
 		// TODO - START 
 		
-		if (true)
-			throw new UnsupportedOperationException(TODO.method());
+		encoded =  new byte[4];
+		
+		//kunne også ha brukt Integer.BYTES som er lik 4
+		ByteBuffer bytebuffer = ByteBuffer.allocate(4);
+		bytebuffer.putInt(x);
+		
+		//for å starte på begynnelsen
+		bytebuffer.flip();
+		
+		bytebuffer.get(encoded);
+		
+		/*if (true)
+			throw new UnsupportedOperationException(TODO.method());*/
 		
 		// TODO - END
 		
@@ -137,8 +181,12 @@ public class RPCUtils {
 		
 		// TODO - START 
 		
-		if (true)
-			throw new UnsupportedOperationException(TODO.method());
+		ByteBuffer bytebuffer = ByteBuffer.wrap(data);
+		
+		decoded = bytebuffer.getInt();
+		
+		/*if (true)
+			throw new UnsupportedOperationException(TODO.method());*/
 		
 		// TODO - END
 		
