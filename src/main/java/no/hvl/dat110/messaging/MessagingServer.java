@@ -33,9 +33,15 @@ public class MessagingServer {
 		// accept TCP connection on welcome socket and create messaging connection to be returned
 		
 		//lag en ny klientsocket av klienten når den kaller på serversocketen
-		Socket clientSocket = welcomeSocket.accept();
+		Socket clientSocket;
+		try {
+			clientSocket = welcomeSocket.accept();
+			connection = new MessageConnection(clientSocket);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		connection = new MessageConnection(clientSocket);
 		
 		/*if (true)
 			throw new UnsupportedOperationException(TODO.method());*/

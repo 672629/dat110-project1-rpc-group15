@@ -12,8 +12,8 @@ public class Message {
 		
 		this.data = data;
 		
-		if(data.length <= 127 && data != null) {
-			throw new UnsupportedOperationException(TODO.constructor("Message"));
+		if(!(data != null || data.length <= 127)) {
+			throw new UnsupportedOperationException("Message konstuktøren fikk feil data");
 		}
 		
 			

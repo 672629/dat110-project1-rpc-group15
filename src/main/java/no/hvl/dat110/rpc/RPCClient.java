@@ -22,7 +22,7 @@ public class RPCClient {
 		// connect using the RPC client
 		
 		
-		msgclient.connect();
+		connection = msgclient.connect();
 		
 		/*if (true)
 			throw new UnsupportedOperationException(TODO.method());*/

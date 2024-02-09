@@ -44,7 +44,8 @@ public class MessageConnection {
 		data = MessageUtils.encapsulate(message);
 		
 		//skriv størrelsen på det vi skal sende
-		outStream.writeInt(data.length);
+		try {
+			outStream.writeInt(data.length);
 		
 		//skriv dataen på det vi skal sende
 		outStream.write(data);
@@ -52,6 +53,10 @@ public class MessageConnection {
 		//flush for å la inputStream lese dataen
 		outStream.flush();
 		
+		}catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		/*if (true)
 			throw new UnsupportedOperationException(TODO.method());*/
 			
@@ -67,16 +72,19 @@ public class MessageConnection {
 		// TODO - START
 		// read a segment from the input stream and decapsulate data into a Message
 		
-		//skal holde max 128 så la til litt extra
-		data = new byte[140];
-		
-		int bytesCopied = inStream.read(data);
-		
-		if(bytesCopied > 0) {
-			MessageUtils.decapsulate(data);
-		}else {
-			System.out.println("Ingen data lest");
+		int size;
+		try {
+			size = inStream.readInt();
+			data = new byte[size];
+			
+			inStream.read(data);
+			
+			message = MessageUtils.decapsulate(data);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		
 		
 		/*if (true)
 			throw new UnsupportedOperationException(TODO.method());*/
