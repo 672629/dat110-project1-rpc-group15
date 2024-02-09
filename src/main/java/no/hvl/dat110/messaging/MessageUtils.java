@@ -51,7 +51,7 @@ public class MessageUtils {
 			}
 			message = new Message(kopiArray);
 		} else {
-			throw new IllegalStateException("Ingen data mottatt i segment-arrayet");
+			message = new Message(new byte[0]);
 		}
 		/*
 		 * if (true) throw new UnsupportedOperationException(TODO.method());

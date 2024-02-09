@@ -39,7 +39,6 @@ public class MessageConnection {
 		// TODO - START
 		// encapsulate the data contained in the Message and write to the output stream
 		
-		//Burde potensielt lagt messageUtil i kontruktøren? men det er her TODO er.
 		
 		data = MessageUtils.encapsulate(message);
 		
